@@ -71,36 +71,37 @@ public class MemberDao {
 		return new Member(memberRow);
 	}
 
-	public int modifyEmail(String Email) { //modify(int id, String Email)
+	public int modifyEmail(String name, String Email) { //modify(int id, String Email)
 		StringBuilder sb = new StringBuilder();
 
 		sb.append(String.format("UPDATE `member` "));  //UPDATE `member`
 		sb.append(String.format("SET updateDate = NOW(), ")); // SET updateDate = NOW(), ""
 		sb.append(String.format("Email = '%s' ", Email)); // Email = '%s', ",Email
-		
+		sb.append(String.format("WHERE `name` = '%s' ", name));
+
 
 		return dbConnection.update(sb.toString());
 	}
 
-	public int modifyLoginPw(String loginPw) {
+	public int modifyLoginPw(String name, String loginPw) {
 		StringBuilder sb = new StringBuilder();
 
 		sb.append(String.format("UPDATE `member` "));  //UPDATE `member`
 		sb.append(String.format("SET updateDate = NOW(), ")); // SET updateDate = NOW(), ""
 		sb.append(String.format("loginPw = '%s' ", loginPw)); // Email = '%s', ",Email
-		
+		sb.append(String.format("WHERE `name` = '%s' ", name));
 
 		return dbConnection.update(sb.toString());
 		
 	}
 
-	public int modifyNickName(String nickName) {
+	public int modifyNickName(String name, String nickName) {
 		StringBuilder sb = new StringBuilder();
 
 		sb.append(String.format("UPDATE `member` "));  //UPDATE `member`
 		sb.append(String.format("SET updateDate = NOW(), ")); // SET updateDate = NOW(), ""
 		sb.append(String.format("nickName = '%s' ", nickName)); // Email = '%s', ",Email
-		
+		sb.append(String.format("WHERE `name` = '%s' ", name));
 
 		return dbConnection.update(sb.toString());
 	}

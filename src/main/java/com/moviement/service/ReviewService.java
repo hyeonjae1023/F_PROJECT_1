@@ -13,11 +13,21 @@ public class ReviewService {
 		reviewDao = Container.reviewDao;
 	}
 
-	public List<Review> getForPrintReivews() {
-		return reviewDao.getReviews();
+	public List<Review> getForPrintReivews(String nickName) {
+		return reviewDao.getForPrintReviews(nickName);
 	}
 
 	public List<Review> getReviews() {
 		return reviewDao.getReviews();
+	}
+
+	public Review getForPrintReview(String menu) {
+		// TODO Auto-generated method stub
+		return reviewDao.getForPrintReview(menu);
+	}
+
+	public void modifyReview(String title, String body, float grades) {
+		reviewDao.modifyReview(title, body, grades);
+		
 	}
 }

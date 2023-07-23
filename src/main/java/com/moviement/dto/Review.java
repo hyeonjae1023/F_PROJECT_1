@@ -18,6 +18,7 @@ public class Review extends Dto {
 		this.name = name;
 		this.boardId = boardId;
 		this.grades = grades;
+	
 	}
 	
 	public Review(Map<String, Object> row) {
@@ -27,5 +28,6 @@ public class Review extends Dto {
 		this.name = (String) row.get("name");
 		this.boardId = (int) row.get("boardId");
 		this.grades = (float) row.get("grades");
+
 	}
 }

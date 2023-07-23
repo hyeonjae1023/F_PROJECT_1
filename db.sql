@@ -84,8 +84,17 @@ updateDate = NOW(),
 loginId = 'admin',
 loginPw = 'admin',
 Email = 'admin',
-nickName = 'admin',
+nickName = '신동우',
 `name` = '관리자';
+
+INSERT INTO `member`
+SET regDate = NOW(),
+updateDate = NOW(),
+loginId = 'user1',
+loginPw = 'user1',
+Email = 'user1',
+nickName = '돼지',
+`name` = '유저1';
 
 SELECT * FROM `member`;
 
@@ -116,6 +125,15 @@ title = '꼭 보세요 진짜 감동이에요ㅠㅠ',
 `body` = '엘리멘탈 진짜 최고ㅠㅠㅠㅠ',
 boardId = 1,
 `name` = '홍길동',
+grades = 4.8;
+
+INSERT INTO review
+SET regDate = NOW(),
+updateDate = NOW(),
+title = '재밌었어요',
+`body` = '존나 재미없어요',
+boardId = 1,
+`name` = '신동우',
 grades = 4.8;
 
 SELECT * FROM review;

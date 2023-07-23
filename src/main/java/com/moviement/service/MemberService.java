@@ -32,18 +32,18 @@ public class MemberService {
 		return null;
 	}
 
-	public void modifyEmail( String Email) {
-		memberDao.modifyEmail( Email);
+	public void modifyEmail(String name, String Email) {
+		memberDao.modifyEmail(name, Email);
 		
 	}
 
-	public void modifyLoginPw(String loginPw) {
-		memberDao.modifyLoginPw(loginPw);
+	public void modifyLoginPw(String name, String loginPw) {
+		memberDao.modifyLoginPw(name, loginPw);
 		
 	}
 
-	public void modifyNickName(String nickName) {
-		memberDao.modifyNickName(nickName);
+	public void modifyNickName(String name, String nickName) {
+		memberDao.modifyNickName(name, nickName);
 		
 	}
 }

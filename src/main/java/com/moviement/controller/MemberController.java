@@ -1,20 +1,25 @@
 package com.moviement.controller;
 
+import java.util.List;
 import java.util.Scanner;
 
 import com.moviement.container.Container;
 import com.moviement.dto.Member;
+import com.moviement.dto.Review;
 import com.moviement.service.MemberService;
+import com.moviement.service.ReviewService;
 
 public class MemberController extends Controller {
 	private Scanner sc;
 	private int selectNum;
 	private MemberService memberService;
 	private Session session;
-
+	private ReviewService reviewService;
+	
 	public MemberController(Scanner isc) {
 		this.sc = isc;
 		memberService = Container.memberService;
+		reviewService = Container.reviewService;
 		session = Container.getSession();
 	}
 
@@ -192,6 +197,7 @@ public class MemberController extends Controller {
 		System.out.printf("1. 이메일  \n");
 		System.out.printf("2. 비밀번호  \n");
 		System.out.printf("3. 닉네임  \n");
+		System.out.printf("4. 리뷰 내역  \n");
 		System.out.printf("선택  ");
 		int menu = sc.nextInt();
 		
@@ -205,7 +211,48 @@ public class MemberController extends Controller {
 		case 3 :
 			changeNickName();
 			break;
+		case 4 :
+			showReviewList();
+			break;
 		}
+	}
+
+	private void showReviewList() {
+		Member loginedMember = Container.getSession().getLoginedMember();
+		List<Review> forPrintReview = Container.reviewService.getForPrintReivews(loginedMember.nickName);
+		
+		if (forPrintReview.size() == 0) {
+			System.out.println("검색결과가 존재하지 않습니다.");
+			return;
+		}
+		
+		System.out.printf("=== === ===수정할 리뷰 선택 === === ===\n\n");
+		System.out.println(" 번호 | 닉네임 | 평점 | 제목 ");
+		
+		Review review;
+		
+		for (int i = 0; i <= forPrintReview.size()-1; i++) {
+			review = forPrintReview.get(i);
+			
+			System.out.printf("%4d|%6s|%4.1f|%s\n", review.id, review.name, review.grades, review.title);
+		}
+		
+		System.out.println();
+		
+		System.out.printf("리뷰 제목 : ");
+		String menu = sc.next().trim();
+		
+		Review choiceReview = Container.reviewService.getForPrintReview(menu);
+		
+		System.out.printf("내용 수정 : ");
+		String body = sc.next();
+		System.out.printf("평점 수정 : ");
+		float grades = sc.nextFloat();
+		
+		reviewService.modifyReview(choiceReview.title,body,grades);
+		
+		
+		System.out.println("수정완료");
 	}
 
 	private void changeNickName() {
@@ -217,14 +264,14 @@ public class MemberController extends Controller {
 			System.out.printf("변경할 닉네임 : ");
 			nickName = sc.next();
 			
-			if(loginedMember.Email.equals(nickName)) {
+			if(isJoinableNickName(nickName) == false) {
 				System.out.println("이미 사용중인 닉네임 입니다.");
 				return;
 			}
 			break;
 		}
 		
-		memberService.modifyNickName(nickName);
+		memberService.modifyNickName(loginedMember.name, nickName);
 		System.out.println("닉네임이 변경 되었습니다.");
 	}
 
@@ -236,7 +283,7 @@ public class MemberController extends Controller {
 			System.out.printf("변경할 비밀번호 : ");
 			loginPw = sc.next();
 		
-		memberService.modifyLoginPw(loginPw);
+		memberService.modifyLoginPw(loginedMember.name, loginPw);
 		System.out.println("비밀번호가 변경 되었습니다.");
 	}
 
@@ -249,14 +296,14 @@ public class MemberController extends Controller {
 			System.out.printf("변경할 Email : ");
 			Email = sc.next();
 			
-			if(loginedMember.Email.equals(Email)) {
+			if(isJoinableEmail(Email) == false) {
 				System.out.println("이미 사용중인 이메일 입니다.");
 				return;
 			}
 			break;
 		}
 		
-		memberService.modifyEmail( Email);
+		memberService.modifyEmail(loginedMember.name, Email);
 		System.out.println("이메일이 변경 되었습니다.");
 	}
 }

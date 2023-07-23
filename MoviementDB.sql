@@ -33,12 +33,13 @@ CREATE TABLE `member` (
   UNIQUE KEY `loginId` (`loginId`),
   UNIQUE KEY `Email` (`Email`),
   UNIQUE KEY `nickName` (`nickName`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `member` */
 
 insert  into `member`(`id`,`regDate`,`updateDate`,`loginId`,`Email`,`nickName`,`loginPw`,`name`) values 
-(1,'2023-07-23 21:08:34','2023-07-23 21:08:34','admin','admin','admin','admin','관리자');
+(1,'2023-07-24 00:15:46','2023-07-24 00:15:59','admin','admin','신동우','admin12','관리자'),
+(2,'2023-07-24 00:15:46','2023-07-24 00:16:29','user1','user1','돼지','user123','유저1');
 
 /*Table structure for table `moviearticle` */
 
@@ -59,12 +60,12 @@ CREATE TABLE `moviearticle` (
 /*Data for the table `moviearticle` */
 
 insert  into `moviearticle`(`id`,`regDate`,`updateDate`,`title`,`body`,`memberId`,`boardId`) values 
-(1,'2023-07-23 21:08:34','2023-07-23 21:08:34','미션 임파서블 : 데드 레코닝','',1,1),
-(2,'2023-07-23 21:08:34','2023-07-23 21:08:34','엘리멘탈','',2,2),
-(3,'2023-07-23 21:08:34','2023-07-23 21:08:34','여름날 우리','',3,3),
-(4,'2023-07-23 21:08:34','2023-07-23 21:08:34','명탐정 코난 : 흑철의 어영','',4,4),
-(5,'2023-07-23 21:08:34','2023-07-23 21:08:34','인시디어스 : 빨간 문','',5,5),
-(6,'2023-07-23 21:08:34','2023-07-23 21:08:34','범죄도시3','',6,6);
+(1,'2023-07-24 00:15:46','2023-07-24 00:15:46','미션 임파서블 : 데드 레코닝','',1,1),
+(2,'2023-07-24 00:15:46','2023-07-24 00:15:46','엘리멘탈','',2,2),
+(3,'2023-07-24 00:15:46','2023-07-24 00:15:46','여름날 우리','',3,3),
+(4,'2023-07-24 00:15:46','2023-07-24 00:15:46','명탐정 코난 : 흑철의 어영','',4,4),
+(5,'2023-07-24 00:15:46','2023-07-24 00:15:46','인시디어스 : 빨간 문','',5,5),
+(6,'2023-07-24 00:15:46','2023-07-24 00:15:46','범죄도시3','',6,6);
 
 /*Table structure for table `review` */
 
@@ -80,13 +81,14 @@ CREATE TABLE `review` (
   `name` char(100) NOT NULL,
   `grades` float(10,1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `review` */
 
 insert  into `review`(`id`,`regDate`,`updateDate`,`title`,`body`,`boardId`,`name`,`grades`) values 
-(1,'2023-07-23 21:08:34','2023-07-23 21:08:34','재밌었어요','오늘 범죄도시3 보고 왔는데, 너무 재밌었어요',1,'홍길동',4.8),
-(2,'2023-07-23 21:08:34','2023-07-23 21:08:34','꼭 보세요 진짜 감동이에요ㅠㅠ','엘리멘탈 진짜 최고ㅠㅠㅠㅠ',1,'홍길동',4.8);
+(1,'2023-07-24 00:15:46','2023-07-24 00:20:52','재밌었어요','시발',1,'홍길동',3.3),
+(2,'2023-07-24 00:15:46','2023-07-24 00:15:46','꼭 보세요 진짜 감동이에요ㅠㅠ','엘리멘탈 진짜 최고ㅠㅠㅠㅠ',1,'홍길동',4.8),
+(3,'2023-07-24 00:15:46','2023-07-24 00:20:52','재밌었어요','시발',1,'신동우',3.3);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
