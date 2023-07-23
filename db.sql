@@ -72,6 +72,8 @@ CREATE TABLE `member` (
 	regDate DATETIME NOT NULL,
 	updateDate DATETIME NOT NULL,
 	loginId CHAR(100) NOT NULL UNIQUE,
+	Email CHAR(100) NOT NULL UNIQUE,
+	nickName CHAR(100) NOT NULL UNIQUE,
 	loginPw CHAR(100) NOT NULL,
 	`name` CHAR(100) NOT NULL
 );
@@ -81,6 +83,8 @@ SET regDate = NOW(),
 updateDate = NOW(),
 loginId = 'admin',
 loginPw = 'admin',
+Email = 'admin',
+nickName = 'admin',
 `name` = '관리자';
 
 SELECT * FROM `member`;

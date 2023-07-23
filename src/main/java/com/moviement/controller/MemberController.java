@@ -60,8 +60,25 @@ public class MemberController extends Controller {
 		}
 		return false;
 	}
+	
+	private boolean isJoinableEmail(String Email) {
+		Member member = memberService.getMemberByLoginId(Email);
 
+		if (member == null) {
+			return true;
+		}
+		return false;
+	}
 
+	private boolean isJoinableNickName(String nickName) {
+		Member member = memberService.getMemberBynickName(nickName);
+
+		if (member == null) {
+			return true;
+		}
+		return false;
+	}
+	
 	private void doJoin() {
 		String loginId = null;
 
@@ -92,10 +109,36 @@ public class MemberController extends Controller {
 			break;
 		}
 
+		String Email = null;
+
+		while (true) {
+			System.out.printf("이메일 : ");
+			Email = sc.next();
+
+			if (isJoinableEmail(Email) == false) {
+				System.out.printf("%s(은)는 이미 사용중인 이메일입니다.\n", Email);
+				continue;
+			}
+			break;
+		}
+		
+		String nickName = null;
+
+		while (true) {
+			System.out.printf("닉네임 : ");
+			nickName = sc.next();
+
+			if (isJoinableNickName(nickName) == false) {
+				System.out.printf("%s(은)는 이미 사용중인 닉네임입니다.\n", nickName);
+				continue;
+			}
+			break;
+		}
+		
 		System.out.printf("이름 : ");
 		String name = sc.next();
 
-		memberService.join(loginId, loginPw, name);
+		memberService.join(loginId, Email, nickName, loginPw, name);
 
 		System.out.printf("%s님, MovieMent 회원이 되신걸 환영합니다 :D\n", name);
 	}
@@ -144,5 +187,76 @@ public class MemberController extends Controller {
 			System.out.println("로그인 후 이용해주세요.\n");
 			return;
 		}
+		
+		System.out.printf("수정 항목 선택 : \n");
+		System.out.printf("1. 이메일  \n");
+		System.out.printf("2. 비밀번호  \n");
+		System.out.printf("3. 닉네임  \n");
+		System.out.printf("선택  ");
+		int menu = sc.nextInt();
+		
+		switch(menu) {
+		case 1 :
+			changeEmail();
+			break;
+		case 2 :
+			changeLoginPw();
+			break;
+		case 3 :
+			changeNickName();
+			break;
+		}
+	}
+
+	private void changeNickName() {
+		Member loginedMember = Container.getSession().getLoginedMember();
+		
+		String nickName = null;
+	
+		while(true) {
+			System.out.printf("변경할 닉네임 : ");
+			nickName = sc.next();
+			
+			if(loginedMember.Email.equals(nickName)) {
+				System.out.println("이미 사용중인 닉네임 입니다.");
+				return;
+			}
+			break;
+		}
+		
+		memberService.modifyNickName(nickName);
+		System.out.println("닉네임이 변경 되었습니다.");
+	}
+
+	private void changeLoginPw() {
+		Member loginedMember = Container.getSession().getLoginedMember();
+		
+		String loginPw = null;
+		
+			System.out.printf("변경할 비밀번호 : ");
+			loginPw = sc.next();
+		
+		memberService.modifyLoginPw(loginPw);
+		System.out.println("비밀번호가 변경 되었습니다.");
+	}
+
+	private void changeEmail() {
+		Member loginedMember = Container.getSession().getLoginedMember();
+		
+		String Email = null;
+	
+		while(true) {
+			System.out.printf("변경할 Email : ");
+			Email = sc.next();
+			
+			if(loginedMember.Email.equals(Email)) {
+				System.out.println("이미 사용중인 이메일 입니다.");
+				return;
+			}
+			break;
+		}
+		
+		memberService.modifyEmail( Email);
+		System.out.println("이메일이 변경 되었습니다.");
 	}
 }

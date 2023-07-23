@@ -24,7 +24,7 @@ public class App {
 		MemberController memberController = new MemberController(isc);
 		MovieArticleController movieArticleController = new MovieArticleController(isc);
 		ReviewController reviewController = new ReviewController(isc);
-
+		
 		while (true) {
 			Controller controller = null;
 
