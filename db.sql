@@ -72,9 +72,8 @@ CREATE TABLE `member` (
 	regDate DATETIME NOT NULL,
 	updateDate DATETIME NOT NULL,
 	loginId CHAR(100) NOT NULL UNIQUE,
-	Email CHAR(100) NOT NULL UNIQUE,
-	nickName CHAR(100) NOT NULL UNIQUE,
 	loginPw CHAR(100) NOT NULL,
+	memberId INT(10) NOT NULL,
 	`name` CHAR(100) NOT NULL
 );
 
@@ -83,8 +82,7 @@ SET regDate = NOW(),
 updateDate = NOW(),
 loginId = 'admin',
 loginPw = 'admin',
-Email = 'admin',
-nickName = '신동우',
+memberId = 1,
 `name` = '관리자';
 
 INSERT INTO `member`
@@ -92,9 +90,8 @@ SET regDate = NOW(),
 updateDate = NOW(),
 loginId = 'user1',
 loginPw = 'user1',
-Email = 'user1',
-nickName = '돼지',
-`name` = '유저1';
+memberId = 2,
+`name` = '홍길동';
 
 SELECT * FROM `member`;
 
@@ -112,49 +109,27 @@ CREATE TABLE review (
 INSERT INTO review
 SET regDate = NOW(),
 updateDate = NOW(),
-title = '재밌었어요',
+title = '범죄도시3',
 `body` = '오늘 범죄도시3 보고 왔는데, 너무 재밌었어요',
 boardId = 1,
-`name` = '홍길동',
-grades = 1.8;
-
-INSERT INTO review
-SET regDate = NOW(),
-updateDate = NOW(),
-title = '꼭 보세요 진짜 감동이에요ㅠㅠ',
-`body` = '엘리멘탈 진짜 최고ㅠㅠㅠㅠ',
-boardId = 2,
 `name` = '홍길동',
 grades = 4.8;
 
 INSERT INTO review
 SET regDate = NOW(),
 updateDate = NOW(),
-title = '재밌었어요',
-`body` = '존나 재미없어요',
-boardId = 3,
-`name` = '신동우',
-grades = 2.5;
-
-INSERT INTO review
-SET regDate = NOW(),
-updateDate = NOW(),
-title = '낫밷',
-`body` = '존나 재미없어요ㅋㅋ',
-boardId = 4,
-`name` = '신동우',
-grades = 3.1;
+title = '엘리멘탈',
+`body` = '엘리멘탈 진짜 최고ㅠㅠㅠㅠ',
+boardId = 2,
+`name` = '홍길동',
+grades = 5.0;
 
 SELECT * FROM review;
 
-CREATE TABLE seat (
+CREATE TABLE seats (
 	id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	regDate DATETIME NOT NULL,
-	updateDate DATETIME NOT NULL,
-	title CHAR(100) NOT NULL,
+	title CHAR(100) NOT NULL
 );
 
-
-INSERT INTO seats (regDate, title) VALUES (NOW(), 'a1');
-
-SELECT * FROM seat;
+SELECT * FROM seats;

@@ -219,8 +219,8 @@ public class MemberController extends Controller {
 
 	private void showReviewList() {
 		System.out.printf("1.리뷰 내역으로\n");
-		System.out.printf("2. 이전으로");
-		
+		System.out.printf("2. 이전으로\n");
+		System.out.printf("입력 >> ");
 		int menu = sc.nextInt();
 		
 		if(menu == 2) {
@@ -274,6 +274,7 @@ public class MemberController extends Controller {
 	private void changeNickName() {
 		System.out.printf("1.닉네임 변경\n");
 		System.out.printf("2. 이전으로");
+		System.out.printf("입력 >> ");
 		
 		int menu = sc.nextInt();
 		
@@ -306,6 +307,7 @@ public class MemberController extends Controller {
 	private void changeLoginPw() {
 		System.out.printf("1.비밀번호 변경\n");
 		System.out.printf("2. 이전으로");
+		System.out.printf("입력 >> ");
 		
 		int menu = sc.nextInt();
 		
