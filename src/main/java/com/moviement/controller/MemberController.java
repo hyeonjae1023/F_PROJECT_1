@@ -240,7 +240,7 @@ public class MemberController extends Controller {
 			review = forPrintReview.get(i);
 			id = i+1;
 			review.id = id;
-			System.out.printf("%4d|%6s|%4.1f|%s\n", review.id, review.name, review.grades, review.title);
+			System.out.printf("%4d|%6s|%4.1f|%s|%s\n", review.id, review.name, review.grades, review.title,review.body);
 		}
 		
 		System.out.println();
@@ -250,11 +250,13 @@ public class MemberController extends Controller {
 		
 		Review choiceReview = Container.reviewService.getForPrintReview(reviewId);
 		
-		System.out.printf("내용 수정 : ");
-		String body = sc.next();
-		
-		System.out.printf("평점 수정 : ");
+		System.out.printf("평점 : ");
 		float grades = sc.nextFloat();
+		
+		sc.nextLine();
+		
+		System.out.println("내용(띄어쓰기 불가) : ");
+		String body = sc.nextLine();
 		
 		reviewService.modifyReview(choiceReview.id,body,grades);
 		
