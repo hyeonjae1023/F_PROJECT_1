@@ -146,3 +146,15 @@ boardId = 4,
 grades = 3.1;
 
 SELECT * FROM review;
+
+CREATE TABLE seat (
+	id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	regDate DATETIME NOT NULL,
+	updateDate DATETIME NOT NULL,
+	title CHAR(100) NOT NULL,
+);
+
+
+INSERT INTO seats (regDate, title) VALUES (NOW(), 'a1');
+
+SELECT * FROM seat;
