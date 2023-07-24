@@ -230,7 +230,6 @@ public class MemberController extends Controller {
 		System.out.println(" 번호 | 닉네임 | 평점 | 제목 ");
 		
 		Review review;
-		int id;
 		for (int i = 0; i <= forPrintReview.size()-1; i++) {
 			if(forPrintReview.size()==0) {
 				System.out.println("리뷰 내역이 없습니다.");
@@ -238,8 +237,7 @@ public class MemberController extends Controller {
 			}
 			
 			review = forPrintReview.get(i);
-			id = i+1;
-			review.id = id;
+			
 			System.out.printf("%4d|%6s|%4.1f|%s|%s\n", review.id, review.name, review.grades, review.title,review.body);
 		}
 		
@@ -255,7 +253,7 @@ public class MemberController extends Controller {
 		
 		sc.nextLine();
 		
-		System.out.println("내용(띄어쓰기 불가) : ");
+		System.out.println("내용 : ");
 		String body = sc.nextLine();
 		
 		reviewService.modifyReview(choiceReview.id,body,grades);

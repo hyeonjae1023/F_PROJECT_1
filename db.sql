@@ -116,14 +116,14 @@ title = '재밌었어요',
 `body` = '오늘 범죄도시3 보고 왔는데, 너무 재밌었어요',
 boardId = 1,
 `name` = '홍길동',
-grades = 4.8;
+grades = 1.8;
 
 INSERT INTO review
 SET regDate = NOW(),
 updateDate = NOW(),
 title = '꼭 보세요 진짜 감동이에요ㅠㅠ',
 `body` = '엘리멘탈 진짜 최고ㅠㅠㅠㅠ',
-boardId = 1,
+boardId = 2,
 `name` = '홍길동',
 grades = 4.8;
 
@@ -132,8 +132,17 @@ SET regDate = NOW(),
 updateDate = NOW(),
 title = '재밌었어요',
 `body` = '존나 재미없어요',
-boardId = 1,
+boardId = 3,
 `name` = '신동우',
-grades = 4.8;
+grades = 2.5;
+
+INSERT INTO review
+SET regDate = NOW(),
+updateDate = NOW(),
+title = '낫밷',
+`body` = '존나 재미없어요ㅋㅋ',
+boardId = 4,
+`name` = '신동우',
+grades = 3.1;
 
 SELECT * FROM review;
