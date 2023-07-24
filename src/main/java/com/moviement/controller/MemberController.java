@@ -218,6 +218,15 @@ public class MemberController extends Controller {
 	}
 
 	private void showReviewList() {
+		System.out.printf("1.리뷰 내역으로\n");
+		System.out.printf("2. 이전으로");
+		
+		int menu = sc.nextInt();
+		
+		if(menu == 2) {
+			System.out.println("변경을 취소합니다.");
+			return;
+		}
 		Member loginedMember = Container.getSession().getLoginedMember();
 		List<Review> forPrintReview = Container.reviewService.getForPrintReivews(loginedMember.nickName);
 		
@@ -263,6 +272,16 @@ public class MemberController extends Controller {
 	}
 
 	private void changeNickName() {
+		System.out.printf("1.닉네임 변경\n");
+		System.out.printf("2. 이전으로");
+		
+		int menu = sc.nextInt();
+		
+		if(menu == 2) {
+			System.out.println("변경을 취소합니다.");
+			return;
+		}
+		
 		Member loginedMember = Container.getSession().getLoginedMember();
 		
 		String nickName = null;
@@ -270,6 +289,7 @@ public class MemberController extends Controller {
 		while(true) {
 			System.out.printf("현재 닉네임 : %s \n",loginedMember.nickName);
 			System.out.printf("변경할 닉네임 : ");
+			
 			nickName = sc.next();
 			
 			if(isJoinableNickName(nickName) == false) {
@@ -284,6 +304,15 @@ public class MemberController extends Controller {
 	}
 
 	private void changeLoginPw() {
+		System.out.printf("1.비밀번호 변경\n");
+		System.out.printf("2. 이전으로");
+		
+		int menu = sc.nextInt();
+		
+		if(menu == 2) {
+			System.out.println("변경을 취소합니다.");
+			return;
+		}
 		Member loginedMember = Container.getSession().getLoginedMember();
 		
 		String loginPw = null;
@@ -297,6 +326,16 @@ public class MemberController extends Controller {
 	}
 
 	private void changeEmail() {
+		System.out.printf("1.이메일 변경\n");
+		System.out.printf("2. 이전으로");
+		
+		int menu = sc.nextInt();
+		
+		if(menu == 2) {
+			System.out.println("변경을 취소합니다.");
+			return;
+		}
+		
 		Member loginedMember = Container.getSession().getLoginedMember();
 		
 		String Email = null;
