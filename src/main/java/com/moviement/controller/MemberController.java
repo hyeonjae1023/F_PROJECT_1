@@ -230,26 +230,33 @@ public class MemberController extends Controller {
 		System.out.println(" 번호 | 닉네임 | 평점 | 제목 ");
 		
 		Review review;
-		
+		int id;
 		for (int i = 0; i <= forPrintReview.size()-1; i++) {
-			review = forPrintReview.get(i);
+			if(forPrintReview.size()==0) {
+				System.out.println("리뷰 내역이 없습니다.");
+				return;
+			}
 			
+			review = forPrintReview.get(i);
+			id = i+1;
+			review.id = id;
 			System.out.printf("%4d|%6s|%4.1f|%s\n", review.id, review.name, review.grades, review.title);
 		}
 		
 		System.out.println();
 		
-		System.out.printf("리뷰 제목 : ");
-		String menu = sc.next().trim();
+		System.out.printf("리뷰 번호 : ");
+		int reviewId = sc.nextInt();
 		
-		Review choiceReview = Container.reviewService.getForPrintReview(menu);
+		Review choiceReview = Container.reviewService.getForPrintReview(reviewId);
 		
 		System.out.printf("내용 수정 : ");
 		String body = sc.next();
+		
 		System.out.printf("평점 수정 : ");
 		float grades = sc.nextFloat();
 		
-		reviewService.modifyReview(choiceReview.title,body,grades);
+		reviewService.modifyReview(choiceReview.id,body,grades);
 		
 		
 		System.out.println("수정완료");
@@ -261,6 +268,7 @@ public class MemberController extends Controller {
 		String nickName = null;
 	
 		while(true) {
+			System.out.printf("현재 닉네임 : %s \n",loginedMember.nickName);
 			System.out.printf("변경할 닉네임 : ");
 			nickName = sc.next();
 			
@@ -279,7 +287,8 @@ public class MemberController extends Controller {
 		Member loginedMember = Container.getSession().getLoginedMember();
 		
 		String loginPw = null;
-		
+		System.out.printf("현재 비밀번호 : %s \n",loginedMember.loginPw);
+
 			System.out.printf("변경할 비밀번호 : ");
 			loginPw = sc.next();
 		
@@ -293,6 +302,8 @@ public class MemberController extends Controller {
 		String Email = null;
 	
 		while(true) {
+			System.out.printf("현재 Email : %s \n",loginedMember.Email);
+
 			System.out.printf("변경할 Email : ");
 			Email = sc.next();
 			

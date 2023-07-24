@@ -21,13 +21,12 @@ public class ReviewService {
 		return reviewDao.getReviews();
 	}
 
-	public Review getForPrintReview(String menu) {
-		// TODO Auto-generated method stub
-		return reviewDao.getForPrintReview(menu);
+	public Review getForPrintReview(int reviewId) {
+		return reviewDao.getForPrintReview(reviewId);
 	}
 
-	public void modifyReview(String title, String body, float grades) {
-		reviewDao.modifyReview(title, body, grades);
+	public void modifyReview(int id, String body, float grades) {
+		reviewDao.modifyReview(id, body, grades);
 		
 	}
 }

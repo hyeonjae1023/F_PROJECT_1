@@ -31,12 +31,12 @@ public class ReviewDao {
 		return reviews;
 	}
 
-	public Review getForPrintReview(String menu) {
+	public Review getForPrintReview(int reviewId) {
 		StringBuilder sb = new StringBuilder();
 
 		sb.append(String.format("SELECT * "));
 		sb.append(String.format("FROM review "));
-		sb.append(String.format("WHERE title = '%s' ", menu));
+		sb.append(String.format("WHERE id = '%d' ", reviewId));
 
 		
 		Map<String, Object> row = dbConnection.selectRow(sb.toString());
@@ -66,14 +66,14 @@ public class ReviewDao {
 		return reviews;
 	}
 	
-	public int modifyReview(String title, String body, float grades) {
+	public int modifyReview(int id, String body, float grades) {
 		StringBuilder sb = new StringBuilder();
 
 		sb.append(String.format("UPDATE review "));
 		sb.append(String.format("SET updateDate = NOW(), "));
 		sb.append(String.format("grades = '%.2f', ", grades));
 		sb.append(String.format("body = '%s' ", body));
-		sb.append(String.format("WHERE title = '%s' ", title));
+		sb.append(String.format("WHERE id = '%d' ", id));
 
 		return dbConnection.update(sb.toString());
 	}
