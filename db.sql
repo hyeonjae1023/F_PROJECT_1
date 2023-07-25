@@ -74,7 +74,9 @@ CREATE TABLE `member` (
 	loginId CHAR(100) NOT NULL UNIQUE,
 	loginPw CHAR(100) NOT NULL,
 	memberId INT(10) NOT NULL,
-	`name` CHAR(100) NOT NULL
+	`name` CHAR(100) NOT NULL,
+	nickName CHAR(100) NOT NULL,
+	Email CHAR(100) NOT NULL
 );
 
 INSERT INTO `member`
@@ -83,7 +85,9 @@ updateDate = NOW(),
 loginId = 'admin',
 loginPw = 'admin',
 memberId = 1,
-`name` = '관리자';
+`name` = '관리자',
+nickName = '미스터신',
+Email = 'asdf';
 
 INSERT INTO `member`
 SET regDate = NOW(),
@@ -91,7 +95,9 @@ updateDate = NOW(),
 loginId = 'user1',
 loginPw = 'user1',
 memberId = 2,
-`name` = '홍길동';
+`name` = '홍길동',
+nickName = '돼지',
+Email = 'sdfrrew';
 
 SELECT * FROM `member`;
 
